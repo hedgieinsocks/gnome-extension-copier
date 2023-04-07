@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+  <schema id="org.gnome.shell.extensions.copier" path="/org/gnome/shell/extensions/copier/">
+    <key name="path" type="s">
+      <default>""</default>
+    </key>
+  </schema>
+</schemalist>
