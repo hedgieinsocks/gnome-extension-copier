@@ -118,7 +118,7 @@ export default class CopierExtension extends Extension {
     }
 
     _addIndicator() {
-        this._indicator = new PanelMenu.Button(0.0, this.name, false);
+        this._indicator = new PanelMenu.Button(0.0, this.metadata.name, false);
 
         let icon = new St.Icon({
             gicon: new Gio.ThemedIcon({ name: ICON }),
@@ -131,7 +131,7 @@ export default class CopierExtension extends Extension {
 
         this._indicator.menu.addAction("Settings", () => this.openPreferences(), "preferences-system-symbolic");
 
-        Main.panel.addToStatusArea(this.name, this._indicator);
+        Main.panel.addToStatusArea(this.metadata.name, this._indicator);
 
         this._menuId = this._indicator.menu.connect("open-state-changed", (open) => {
             if (open) {
