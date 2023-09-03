@@ -11,7 +11,7 @@ const ICON = "edit-copy-symbolic";
 const ScrollableMenu = class ScrollableMenu extends PopupMenu.PopupMenuSection {
     constructor() {
         super();
-        let scrollView = new St.ScrollView();
+        const scrollView = new St.ScrollView();
         this.innerMenu = new PopupMenu.PopupMenuSection();
         scrollView.add_actor(this.innerMenu.actor);
         this.actor.add_actor(scrollView);
@@ -32,7 +32,7 @@ export default class CopierExtension extends Extension {
     _fillMenu(path) {
         this._menu.innerMenu.removeAll();
 
-        let rootPath = this._settings.get_string("path");
+        const rootPath = this._settings.get_string("path");
         if (!rootPath) {
             return;
         }
@@ -49,7 +49,7 @@ export default class CopierExtension extends Extension {
             path = rootPath;
         }
 
-        let items = this._getFiles(path);
+        const items = this._getFiles(path);
 
         if (!items) {
             return;
@@ -73,30 +73,30 @@ export default class CopierExtension extends Extension {
     }
 
     _getFiles(path) {
-        let directory = Gio.File.new_for_path(path);
+        const directory = Gio.File.new_for_path(path);
         if (!directory.query_exists(null)) {
             return;
         }
 
-        let enumerator = directory.enumerate_children(
+        const enumerator = directory.enumerate_children(
             "standard::name,standard::type,standard::content-type,standard::icon",
             Gio.FileQueryInfoFlags.NONE,
             null
         );
-        let dirs = [];
-        let files = [];
+        const dirs = [];
+        const files = [];
 
         while (true) {
-            let fileInfo = enumerator.next_file(null);
+            const fileInfo = enumerator.next_file(null);
             if (!fileInfo) {
                 break;
             }
 
-            let fileType = fileInfo.get_file_type();
+            const fileType = fileInfo.get_file_type();
             if (fileType === Gio.FileType.DIRECTORY) {
                 dirs.push(fileInfo);
             } else if (fileType === Gio.FileType.REGULAR) {
-                let fileMime = fileInfo.get_content_type();
+                const fileMime = fileInfo.get_content_type();
                 if (fileMime.startsWith("text/")) {
                     files.push(fileInfo);
                 }
@@ -111,16 +111,16 @@ export default class CopierExtension extends Extension {
 
     _copyFile(file) {
         this._indicator.menu.toggle();
-        let data = GLib.file_get_contents(file)[1];
-        let decoder = new TextDecoder();
-        let text = decoder.decode(data).trim();
+        const data = GLib.file_get_contents(file)[1];
+        const decoder = new TextDecoder();
+        const text = decoder.decode(data).trim();
         this._clipboard.set_text(St.ClipboardType.CLIPBOARD, text);
     }
 
     _addIndicator() {
         this._indicator = new PanelMenu.Button(0.0, this.metadata.name, false);
 
-        let icon = new St.Icon({
+        const icon = new St.Icon({
             gicon: new Gio.ThemedIcon({ name: ICON }),
             style_class: "popup-menu-icon",
         });
@@ -128,7 +128,6 @@ export default class CopierExtension extends Extension {
 
         this._menu = new ScrollableMenu();
         this._indicator.menu.addMenuItem(this._menu);
-
         this._indicator.menu.addAction("Settings", () => this.openPreferences(), "preferences-system-symbolic");
 
         Main.panel.addToStatusArea(this.metadata.name, this._indicator);
