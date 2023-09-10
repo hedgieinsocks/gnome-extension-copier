@@ -23,10 +23,10 @@ export default class CopierPreferences extends ExtensionPreferences {
             hexpand: true,
         });
 
+        settings.bind("path", entry, "text", Gio.SettingsBindFlags.DEFAULT);
+
         row.add_suffix(entry);
         row.activatable_widget = entry;
-
-        settings.bind("path", entry, "text", Gio.SettingsBindFlags.DEFAULT);
 
         window.add(page);
     }
