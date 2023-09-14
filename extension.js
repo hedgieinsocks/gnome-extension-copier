@@ -152,5 +152,6 @@ export default class CopierExtension extends Extension {
         this._menuId = null;
         this._menu = null;
         this._settings = null;
+        this._clipboard = null;
     }
 }
