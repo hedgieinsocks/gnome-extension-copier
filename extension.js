@@ -63,9 +63,11 @@ export default class CopierExtension extends Extension {
             );
         });
 
+        const stripExt = this._settings.get_boolean("strip");
+
         items[1].forEach((file) => {
             this._menu.innerMenu.addAction(
-                file.get_name(),
+                stripExt ? file.get_name().replace(/\.[^\.]+$/, "") : file.get_name(),
                 () => this._copyFile(`${path}/${file.get_name()}`),
                 file.get_icon()
             );
