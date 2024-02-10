@@ -1,5 +1,5 @@
-# 🗃️ Copier - GNOME extension
+# Copier
 
-## Navigate and copy text notes to clipboard from a Panel Indicator
+## Copy text notes to clipboard via a panel indicator
 
 https://extensions.gnome.org/extension/5883/copier/
