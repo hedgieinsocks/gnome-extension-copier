@@ -1,8 +1,8 @@
 {
-    "uuid": "copier@hedgie.tech",
-    "name": "Copier",
-    "description": "Copy text notes to clipboard via a panel indicator",
-    "shell-version": ["45", "46"],
-    "settings-schema": "org.gnome.shell.extensions.copier",
-    "url": "https://github.com/hedgieinsocks/gnome-extension-copier"
+  "uuid": "copier@hedgie.tech",
+  "name": "Copier",
+  "description": "Copy text notes to clipboard via a panel indicator",
+  "shell-version": ["45", "46", "47"],
+  "settings-schema": "org.gnome.shell.extensions.copier",
+  "url": "https://github.com/hedgieinsocks/gnome-extension-copier"
 }
